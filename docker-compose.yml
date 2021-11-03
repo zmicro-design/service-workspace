@@ -1,0 +1,28 @@
+version: '3.7'
+
+services:
+  workspace:
+    restart: always
+    build:
+      context: ./image
+    # ports:
+    #  - 127.0.0.1:8022:22
+    hostname: work # $COMPANY
+    environment:
+      INLETS_CLIENT_ID: ${INLETS_CLIENT_ID}
+      INLETS_CLIENT_SECRET: ${INLETS_CLIENT_SECRET}
+      INLETS_PORT: ${INLETS_PORT}
+    volumes:
+      - ${SERVICE_DATA}/.vscode-server:/home/workspace/.vscode-server
+      - ${SERVICE_DATA}/.ssh:/home/workspace/.ssh
+      - type: bind
+        source: ${SOURCE_CODE_DIR}
+        target: /home/workspace/code
+      - type: bind
+        source: /var/run/docker.sock
+        target: /var/run/docker.sock
+
+networks:
+  default:
+    external: true
+    name: compose-ingress

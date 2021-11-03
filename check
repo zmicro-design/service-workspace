@@ -1,0 +1,39 @@
+#!/bin/bash
+
+load inquirer
+
+check() {
+  if [ ! -f $SERVICE_CONFIG ]; then
+     touch $SERVICE_CONFIG
+  fi
+
+  config::load_file $SERVICE_CONFIG
+
+  if [ -z "$INLETS_CLIENT_ID" ]; then
+    inquirer::text "请输入 INLETS_CLIENT_ID:" value
+    echo "INLETS_CLIENT_ID=$value" > $SERVICE_CONFIG
+  fi
+
+  if [ -z "$INLETS_CLIENT_SECRET" ]; then
+    inquirer::text "请输入 INLETS_CLIENT_SECRET:" value
+    echo "INLETS_CLIENT_SECRET=$value" >> $SERVICE_CONFIG
+  fi
+
+  if [ -z "$INLETS_PORT" ]; then
+    inquirer::text "请输入 INLETS_PORT:" value
+    echo "INLETS_PORT=$value" >> $SERVICE_CONFIG
+  fi
+
+  if [ -z "$SOURCE_CODE_DIR" ]; then
+    inquirer::text "请输入 SOURCE_CODE_DIR:" value
+    echo "SOURCE_CODE_DIR=$value" >> $SERVICE_CONFIG
+  fi
+
+  #@TODO
+  export INLETS_CLIENT_ID=$INLETS_CLIENT_ID
+  export INLETS_CLIENT_SECRET=$INLETS_CLIENT_SECRET
+  export INLETS_PORT=$INLETS_PORT
+  export SOURCE_CODE_DIR=$SOURCE_CODE_DIR
+}
+
+check $@
