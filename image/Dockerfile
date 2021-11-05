@@ -1,4 +1,4 @@
-FROM whatwewant/workspace:v0.1.13
+FROM whatwewant/workspace:v0.1.14
 
 ENV TZ=Asia/Shanghai
 
