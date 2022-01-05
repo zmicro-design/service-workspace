@@ -9,9 +9,11 @@ services:
     #  - 127.0.0.1:8022:22
     hostname: work # $COMPANY
     environment:
-      INLETS_CLIENT_ID: ${INLETS_CLIENT_ID}
-      INLETS_CLIENT_SECRET: ${INLETS_CLIENT_SECRET}
-      INLETS_PORT: ${INLETS_PORT}
+      INLETS_CLIENT_ID: ${SERVICE_WORKSPACE_INLETS_CLIENT_ID}
+      INLETS_CLIENT_SECRET: ${SERVICE_WORKSPACE_INLETS_CLIENT_SECRET}
+      INLETS_PORT: ${SERVICE_WORKSPACE_INLETS_PORT}
+      GIT_USER: ${SERVICE_WORKSPACE_GIT_USER}
+      GIT_EMAIL: ${SERVICE_WORKSPACE_GIT_EMAIL}
     volumes:
       - ${SERVICE_DATA}/.vscode-server:/home/workspace/.vscode-server
       - ${SERVICE_DATA}/.ssh:/home/workspace/.ssh
