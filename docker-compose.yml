@@ -5,8 +5,8 @@ services:
     restart: always
     build:
       context: ./image
-    # ports:
-    #  - 127.0.0.1:8022:22
+    ports:
+      - 0.0.0.0:${SERVICE_WORKSPACE_SSH_PORT}:22
     hostname: work # $COMPANY
     environment:
       INLETS_CLIENT_ID: ${SERVICE_WORKSPACE_INLETS_CLIENT_ID}
@@ -18,7 +18,7 @@ services:
       - ${SERVICE_DATA}/.vscode-server:/home/workspace/.vscode-server
       - ${SERVICE_DATA}/.ssh:/home/workspace/.ssh
       - type: bind
-        source: ${SOURCE_CODE_DIR}
+        source: ${SERVICE_WORKSPACE_SOURCE_CODE_DIR}
         target: /home/workspace/code
       - type: bind
         source: /var/run/docker.sock
