@@ -1,1 +1,2 @@
 export SERVICE_NAME=workspace
+export SERVICE_WORKSPACE_SSH_PORT=30022
