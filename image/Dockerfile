@@ -1,6 +1,4 @@
-FROM whatwewant/workspace:v0.1.15
-
-ENV TZ=Asia/Shanghai
+FROM whatwewant/workspace:v1.0.0
 
 COPY entrypoint.sh /
 
