@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# Start Inlets
 if [ "${INLETS_CLIENT_ID}" = "" ]; then
   echo "Please Config Env: INLETS_CLIENT_ID"
   exit -1
@@ -46,14 +47,23 @@ fi
 # Change Mirror
 # bash /build/scripts/change-mirrors.sh
 
+# Make it Front
+# if [ -n "NO_INLETS" ]; then
+#   echo ""
+#   echo "##################################"
+#   echo "Now, Everything is Ready ..."
+#   echo "##################################"
+#   echo ""
+
+#   sleep infinity
+#   exit 0
+# fi
+
 echo ""
 echo "##################################"
 echo "Now, Everything is Ready ..."
 echo "##################################"
 echo ""
-
-# Make it Front
-# sleep infinity
 
 # echo "Start Inlets Service ..."
 # Nodejs
