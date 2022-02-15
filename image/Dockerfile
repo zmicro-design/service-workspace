@@ -1,4 +1,4 @@
-FROM whatwewant/workspace:v1.0.0
+FROM whatwewant/workspace:v1.0.4
 
 COPY entrypoint.sh /
 
