@@ -18,9 +18,7 @@ services:
     volumes:
       - ${SERVICE_DATA}/.vscode-server:/home/workspace/.vscode-server
       - ${SERVICE_DATA}/.ssh:/home/workspace/.ssh
-      - type: bind
-        source: ${SERVICE_WORKSPACE_SOURCE_CODE_DIR}
-        target: /home/workspace/code
+      - ${SERVICE_WORKSPACE_SOURCE_CODE_DIR}:/home/workspace/code
       - type: bind
         source: /var/run/docker.sock
         target: /var/run/docker.sock
