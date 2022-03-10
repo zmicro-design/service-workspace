@@ -17,7 +17,7 @@ services:
       GIT_EMAIL: ${SERVICE_WORKSPACE_GIT_EMAIL}
     volumes:
       - ${SERVICE_DATA}/.vscode-server:/home/workspace/.vscode-server
-      - ${SERVICE_DATA}/.ssh:/home/workspace/.ssh
+      - ${SERVICE_WORKSPACE_SSH_CONFIG}:/home/workspace/.ssh
       - ${SERVICE_WORKSPACE_SOURCE_CODE_DIR}:/home/workspace/code
       - type: bind
         source: /var/run/docker.sock
