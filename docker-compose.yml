@@ -3,8 +3,7 @@ version: '3.7'
 services:
   workspace:
     restart: always
-    build:
-      context: ./image
+    image: whatwewant/workspace:${SERVICE_WORKSPACE_IMAGE_VERSION}
     ports:
       - 0.0.0.0:${SERVICE_WORKSPACE_SSH_PORT}:22
     hostname: ${SERVICE_WORKSPACE_COMPANY}
