@@ -3,79 +3,22 @@
 load inquirer
 
 check() {
-  if [ ! -f $SERVICE_CONFIG ]; then
-     touch $SERVICE_CONFIG
+  if [ "$DEBUG" = "true" ]; then
+    log::info "[DEBUG][service][workspace]: $SERVICE_CONFIG"
+    cat $SERVICE_CONFIG
   fi
 
-  config::load_file $SERVICE_CONFIG
-
-  if [ -z "$SERVICE_WORKSPACE_COMPANY" ]; then
-    inquirer::text "请输入 SERVICE_WORKSPACE_COMPANY:" value
-    echo "SERVICE_WORKSPACE_COMPANY=$value" >> $SERVICE_CONFIG
-  fi
-
-  if [ -z "$SERVICE_WORKSPACE_INLETS_CLIENT_ID" ]; then
-    inquirer::text "请输入 SERVICE_WORKSPACE_INLETS_CLIENT_ID:" value
-    echo "SERVICE_WORKSPACE_INLETS_CLIENT_ID=$value" > $SERVICE_CONFIG
-  fi
-
-  if [ -z "$SERVICE_WORKSPACE_INLETS_CLIENT_SECRET" ]; then
-    inquirer::text "请输入 SERVICE_WORKSPACE_INLETS_CLIENT_SECRET:" value
-    echo "SERVICE_WORKSPACE_INLETS_CLIENT_SECRET=$value" >> $SERVICE_CONFIG
-  fi
-
-  if [ -z "$SERVICE_WORKSPACE_INLETS_PORT" ]; then
-    inquirer::text "请输入 SERVICE_WORKSPACE_INLETS_PORT:" value
-    echo "SERVICE_WORKSPACE_INLETS_PORT=$value" >> $SERVICE_CONFIG
-  fi
-
-  if [ -z "$SERVICE_WORKSPACE_SOURCE_CODE_DIR" ]; then
-    inquirer::text "请输入 SERVICE_WORKSPACE_SOURCE_CODE_DIR:" value
-    echo "SERVICE_WORKSPACE_SOURCE_CODE_DIR=$value" >> $SERVICE_CONFIG
-  fi
-
-  if [ -z "$SERVICE_WORKSPACE_GIT_USER" ]; then
-    inquirer::text "请输入 SERVICE_WORKSPACE_GIT_USER:" value
-    echo "SERVICE_WORKSPACE_GIT_USER=$value" >> $SERVICE_CONFIG
-  fi
-
-  if [ -z "$SERVICE_WORKSPACE_GIT_EMAIL" ]; then
-    inquirer::text "请输入 SERVICE_WORKSPACE_GIT_EMAIL:" value
-    echo "SERVICE_WORKSPACE_GIT_EMAIL=$value" >> $SERVICE_CONFIG
-  fi
-
-  if [ -z "$SERVICE_WORKSPACE_SSH_PORT" ]; then
-    inquirer::text "请输入 SERVICE_WORKSPACE_SSH_PORT:" value
-    echo "SERVICE_WORKSPACE_SSH_PORT=$value" >> $SERVICE_CONFIG
-  fi
-
-  if [ "$SERVICE_WORKSPACE_PREVILEGED" != "true" ]; then
-    local choices=(
-      "Yes"
-      "No"
-    )
-    inquirer::select "Allow root previledge ?" choices value
-    if [ "$value" = "Yes" ]; then
-      echo "SERVICE_WORKSPACE_PREVILEGED=true" >> $SERVICE_CONFIG
-    fi
-  fi
-
-  if [ -z "$SERVICE_WORKSPACE_SSH_CONFIG" ]; then
-    inquirer::text "请输入 SERVICE_WORKSPACE_SSH_CONFIG:" value
-    echo "SERVICE_WORKSPACE_SSH_CONFIG=$value" >> $SERVICE_CONFIG
-  fi
-
-  #@TODO
-  export SERVICE_WORKSPACE_COMPANY=$SERVICE_WORKSPACE_COMPANY
-  export SERVICE_WORKSPACE_INLETS_CLIENT_ID=$SERVICE_WORKSPACE_INLETS_CLIENT_ID
-  export SERVICE_WORKSPACE_INLETS_CLIENT_SECRET=$SERVICE_WORKSPACE_INLETS_CLIENT_SECRET
-  export SERVICE_WORKSPACE_INLETS_PORT=$SERVICE_WORKSPACE_INLETS_PORT
-  export SERVICE_WORKSPACE_SOURCE_CODE_DIR=$SERVICE_WORKSPACE_SOURCE_CODE_DIR
-  export SERVICE_WORKSPACE_GIT_USER=$SERVICE_WORKSPACE_GIT_USER
-  export SERVICE_WORKSPACE_GIT_EMAIL=$SERVICE_WORKSPACE_GIT_EMAIL
-  export SERVICE_WORKSPACE_SSH_PORT=$SERVICE_WORKSPACE_SSH_PORT
-  export SERVICE_WORKSPACE_PREVILEGED=$SERVICE_WORKSPACE_PREVILEGED
-  export SERVICE_WORKSPACE_SSH_CONFIG=$SERVICE_WORKSPACE_SSH_CONFIG
+  config::check_or_set SERVICE_WORKSPACE_COMPANY text $SERVICE_CONFIG
+  # config::check_or_set SERVICE_REMOTEDEV_SOURCE_CODE_DIR text $SERVICE_CONFIG
+  config::check_or_set SERVICE_WORKSPACE_INLETS_CLIENT_ID text $SERVICE_CONFIG "Input Inlets Client ID:"
+  config::check_or_set SERVICE_WORKSPACE_INLETS_CLIENT_SECRET text $SERVICE_CONFIG "Input Inlets Client Secret:"
+  config::check_or_set SERVICE_WORKSPACE_INLETS_PORT text $SERVICE_CONFIG "Input Inlets Port:"
+  config::check_or_set SERVICE_WORKSPACE_SOURCE_CODE_DIR text $SERVICE_CONFIG "Input Source Code Dir:"
+  config::check_or_set SERVICE_WORKSPACE_GIT_USER text $SERVICE_CONFIG "Input Git User:"
+  config::check_or_set SERVICE_WORKSPACE_GIT_EMAIL text $SERVICE_CONFIG "Input Git Email:"
+  config::check_or_set SERVICE_WORKSPACE_SSH_PORT text $SERVICE_CONFIG "Input SSH Port:"
+  config::check_or_set SERVICE_WORKSPACE_PREVILEGED yesno $SERVICE_CONFIG "Allow Previledge ?"
+  config::check_or_set SERVICE_WORKSPACE_SSH_CONFIG text $SERVICE_CONFIG "Input SSH Config Dir:"
 }
 
 check $@
