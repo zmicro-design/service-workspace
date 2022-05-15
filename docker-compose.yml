@@ -19,8 +19,8 @@ services:
       - ${SERVICE_WORKSPACE_SSH_CONFIG}:/home/workspace/.ssh
       - ${SERVICE_DATA}/.gpm:/home/workspace/.gpm
       - ${SERVICE_WORKSPACE_SOURCE_CODE_DIR}:/home/workspace/code
-      - ${SERVICE_DATA}/zmicro/data:/data
-      - ${SERVICE_DATA}/zmicro/configs:/configs
+      # - ${SERVICE_DATA}/zmicro/data:/data
+      # - ${SERVICE_DATA}/zmicro/configs:/configs
       - type: bind
         source: /var/run/docker.sock
         target: /var/run/docker.sock
