@@ -1,3 +1,3 @@
 NAME=workspace
-VERSION=v1.2.15
+VERSION=v1.2.16
 DESCRIPTION="Workspace Service"
