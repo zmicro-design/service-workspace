@@ -21,6 +21,7 @@ services:
       - ${SERVICE_WORKSPACE_SOURCE_CODE_DIR}:/home/workspace/code
       # - ${SERVICE_DATA}/zmicro/data:/data
       # - ${SERVICE_DATA}/zmicro/configs:/configs
+      - ${SERVICE_DATA}/zmicro_data:/zmicro_data
       - type: bind
         source: /var/run/docker.sock
         target: /var/run/docker.sock
