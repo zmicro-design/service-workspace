@@ -15,13 +15,13 @@ services:
       GIT_USER: ${SERVICE_WORKSPACE_GIT_USER}
       GIT_EMAIL: ${SERVICE_WORKSPACE_GIT_EMAIL}
     volumes:
-      - ${SERVICE_DATA}/.vscode-server:/home/workspace/.vscode-server
+      - ${SERVICE_WORKSPACE_VSCODE_CONFIG}:/home/workspace/.vscode-server
       - ${SERVICE_WORKSPACE_SSH_CONFIG}:/home/workspace/.ssh
-      - ${SERVICE_DATA}/.gpm:/home/workspace/.gpm
+      - ${SERVICE_WORKSPACE_GPM_CONFIG}:/home/workspace/.gpm
       - ${SERVICE_WORKSPACE_SOURCE_CODE_DIR}:/home/workspace/code
       # - ${SERVICE_DATA}/zmicro/data:/data
       # - ${SERVICE_DATA}/zmicro/configs:/configs
-      - ${SERVICE_DATA}/zmicro_data:/zmicro_data
+      - ${SERVOCE_WORKSPACE_ZMICRO_DATA}:/zmicro_data
       - type: bind
         source: /var/run/docker.sock
         target: /var/run/docker.sock
