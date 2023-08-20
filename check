@@ -16,7 +16,11 @@ check() {
   config::check_or_set SERVICE_WORKSPACE_SOURCE_CODE_DIR text $SERVICE_CONFIG "Input Source Code Dir:"
   config::check_or_set SERVICE_WORKSPACE_GIT_USER text $SERVICE_CONFIG "Input Git User:"
   config::check_or_set SERVICE_WORKSPACE_GIT_EMAIL text $SERVICE_CONFIG "Input Git Email:"
+
   config::check_or_set SERVICE_WORKSPACE_SSH_PORT text $SERVICE_CONFIG "Input SSH Port:"
+  config::check_or_set SERVICE_WORKSPACE_HTTP_SERVER_PORT text $SERVICE_CONFIG "Input HTTP Service Port:"
+  config::check_or_set SERVICE_WORKSPACE_VSCODE_SERVER_PORT text $SERVICE_CONFIG "Input VSCode Server Port:"
+
   config::check_or_set SERVICE_WORKSPACE_PREVILEGED yesno $SERVICE_CONFIG "Allow Previledge ?"
   config::check_or_set SERVICE_WORKSPACE_SSH_CONFIG text $SERVICE_CONFIG "Input SSH Config Dir:"
 }
